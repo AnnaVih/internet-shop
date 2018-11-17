@@ -3,13 +3,15 @@
 }
 
 .form-control-style label,
-.form-control-style input {
+.form-control-style input,
+.form-control-style textarea {
     display: block;
     width: 100%;
     margin-bottom: 0.25rem;
 }
 
-.form-control-style input {
+.form-control-style input,
+.form-control-style textarea {
     border: 1px solid #a1a1a1;
     font: inherit;
     border-radius: 2px;
