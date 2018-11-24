@@ -5,8 +5,11 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": " env $(cat .env | xargs) nodemon app.js",
-    "start-server": "node app.js"
+    "dev": "env $(cat .env | xargs) npm run server",
+    "build-css": "node-sass --include-path scss scss/main.scss  public/css/main.css",
+    "watch-css": "nodemon -e scss -x \"npm run build-css\"",
+    "server": "npm run watch-css & nodemon server.js",
+    "start": "node app.js"
   },
   "author": "Anna Vihrogonova",
   "license": "ISC",
@@ -17,6 +20,7 @@
     "body-parser": "^1.18.3",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
-    "mongoose": "^5.3.13"
+    "mongoose": "^5.3.13",
+    "node-sass": "^4.10.0"
   }
 }
