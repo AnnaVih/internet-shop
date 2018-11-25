@@ -3,13 +3,21 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const session = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(session);
 
 const dbConfig = require('./config');
 const errorController = require('./controllers/error');
 const User = require('./models/user');
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
+const authRoutes = require('./routes/auth');
+
 const app = express();
+const store = new MongoDBStore({
+    uri: dbConfig.getDBConnection(),
+    collection: 'sessions'
+});
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
@@ -17,19 +25,28 @@ app.set('views', 'views');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+    secret: process.env.EXPRESS_SESSION_SECRET, 
+    resave: false, 
+    saveUninitialized: false, 
+    store: store
+}));
 
-//Will be changed with adding authorization
 app.use((req, res, next) => {
-    User.findById('5bf95ad6e4122ce64a73eaeb')
-        .then(user => {
-            req.user = user;
-            next();
-        })
-        .catch(err => console.log(err));
+    if(!req.session.user){
+        return next();
+    }
+    User.findById(req.session.user._id)
+    .then(user => {
+        req.user = user;
+        next();
+    })
+    .catch(err => console.log(err));
 });
 
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
+app.use(authRoutes);
 
 app.use(errorController.get404);
 
@@ -37,19 +54,6 @@ app.use(errorController.get404);
 mongoose
     .connect(dbConfig.getDBConnection())
     .then(() => {
-        User.findOne().then(user => {
-            if(!user){
-                const user = new User({
-                    name: 'Anna',
-                    email: 'test@test.com',
-                    cart: {
-                        items: []
-                    }
-                });
-                user.save();
-            }
-        });
-
         app.listen(process.env.PORT || 3000);
     })
     .catch(err => {
