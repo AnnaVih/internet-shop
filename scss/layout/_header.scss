@@ -13,6 +13,10 @@
       align-items: center;
       justify-content: space-between
     }
+
+    &__icon {
+      font-size: 4rem;
+    }
   
     &__item {
       margin: 0 1rem;
@@ -23,9 +27,11 @@
         margin: 0;
         padding: 0;
         display: flex;
+        align-items: center;
       }
   
-      a {
+      a,
+      button {
         text-decoration: none;
         color: $lightgrey;
         text-transform: uppercase;
@@ -39,7 +45,7 @@
 
         &:hover,
         &:active {
-          box-shadow: 0 1rem 2rem rgba($black, .4);
+          box-shadow: 0 .3rem 4rem rgba($black, .4);
         }
       }
     }
