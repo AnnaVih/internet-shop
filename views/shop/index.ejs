@@ -1,11 +1,14 @@
 <%- include('../includes/head.ejs') %>
-    <link rel="stylesheet" href="/css/product.css">
+    <link rel="stylesheet" href="/css/main.css">
 </head>
 
 <body>
     <%- include('../includes/navigation.ejs') %>
 
-    <main>
+    <main class="container">
+        <div class="u-center-text">
+            <h1 class="heading-secondary">Most popular products</h1>
+        </div>
         <% if (prods.length > 0) { %>
             <div class="grid">
                 <% for (let product of prods) { %>
@@ -17,11 +20,8 @@
                             <img src="<%= product.imageUrl %>"
                                 alt="<%= product.title %>">
                         </div>
-                        <div class="card__content">
-                            <h2 class="product__price">$<%= product.price %></h2>
-                            <p class="product__description"><%= product.description %></p>
-                        </div>
                         <div class="card__actions">
+                            <a href="/products/<%= product._id %>" class="btn">Details</a>
                             <%- include('../includes/cart.ejs', {product: product}) %>
                         </div>
                     </article>
@@ -30,5 +30,9 @@
         <% } else { %>
             <h1>No Products Found!</h1>
         <% } %>
+        <div class="u-center-text u-margin-top-big">
+            <a href="/products" class="btn btn--primary">Discover more products</a>
+        </div>
     </main>
+    <%- include('../includes/footer.ejs') %>
 <%- include('../includes/end.ejs') %>
