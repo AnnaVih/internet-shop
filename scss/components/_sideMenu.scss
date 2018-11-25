@@ -1,0 +1,19 @@
+#side-menu-toggle {
+    border: .1rem solid $white;
+    font: inherit;
+    padding: 0.5rem;
+    display: block;
+    background: transparent;
+    color: $white;
+    cursor: pointer;
+  
+    &:focus {
+      outline: none;
+    }
+  
+    &:active,
+    &:hover {
+      color: $color-secondary;
+      border-color: $color-secondary;
+    }
+}

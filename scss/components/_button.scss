@@ -1,0 +1,31 @@
+.btn {
+    display: inline-block;
+    padding: 0.25rem 1rem;
+    text-decoration: none;
+    font: inherit;
+    border: .1rem solid $color-primary;
+    color: $color-primary;
+    background: $white;
+    border-radius: .1rem;
+    cursor: pointer;
+    transition: all .3s;
+  
+    &:hover,
+    &:active {
+      background-color: $color-primary;
+      color: $color-secondary;
+    }
+
+    &--primary {
+      background: rgba($color-primary, .9);
+      padding: 1rem;
+      color: $white;
+
+      &:hover,
+      &:active {
+        background-color: rgba($color-primary, 1);
+        color: $color-secondary;
+        transform: rotate(5deg) scale(1.3);
+      }
+    }
+  }

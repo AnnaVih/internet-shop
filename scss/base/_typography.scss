@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.heading{
+    &-secondary {
+        text-transform: uppercase;
+        padding-bottom: 5rem;
+        color: $color-primary;
+        letter-spacing: 7px;
+    }
+}

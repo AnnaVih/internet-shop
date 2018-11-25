@@ -1,0 +1,45 @@
+.mobile-nav {
+    width: 30rem;
+    height: 100vh;
+    max-width: 90%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: $white;
+    z-index: 10;
+    padding: 2rem 1rem 1rem 2rem;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-out;
+  
+    &.open {
+      transform: translateX(0);
+    }
+  
+    &__item {
+      margin: 1rem;
+      padding: 0;
+  
+      &-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        padding: 0;
+      }
+  
+      a {
+        text-decoration: none;
+        color: $black;
+        font-size: 1.5rem;
+        padding: 0.5rem 2rem;
+      }
+  
+      a:active,
+      a:hover,
+      a.active {
+        background: $color-primary;
+        color: $white;
+        border-radius: .3rem;
+      }
+    }
+}
