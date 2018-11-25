@@ -1,5 +1,4 @@
 <%- include('../includes/head.ejs') %>
-    <link rel="stylesheet" href="/css/main.css">
 </head>
 
 <body>
@@ -15,7 +14,9 @@
         <hr>
         <div class="card__actions">
             <a href="/products" class="btn">Go back</a>
-            <%- include('../includes/cart.ejs') %>
+            <% if(isAuthenticated) { %> 
+                <%- include('../includes/cart.ejs') %>
+            <% } %>
         </div>
     </main>
     <%- include('../includes/footer.ejs') %>

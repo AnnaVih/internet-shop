@@ -1,5 +1,4 @@
 <%- include('../includes/head.ejs') %>
-    <link rel="stylesheet" href="/css/main.css">
 </head>
 
 <body>
@@ -29,7 +28,9 @@
                             </div>
                             <div class="card__actions">
                                 <a href="/products/<%= product._id %>" class="btn">Details</a>
-                                <%- include('../includes/cart.ejs', {product: product}) %>
+                                <% if(isAuthenticated) { %> 
+                                    <%- include('../includes/cart.ejs', {product: product}) %>
+                                <% } %>
                             </div>
                         </div>
                     </article>
